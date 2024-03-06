@@ -9,7 +9,7 @@
 #define MP3_TAG "DFPLAYER"
 
 #ifdef DEBUG
-#define DEFAULT_VOLUME 10
+#define DEFAULT_VOLUME 16
 #else
 #define DEFAULT_VOLUME 15
 #endif
