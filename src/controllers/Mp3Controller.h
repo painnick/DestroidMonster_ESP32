@@ -11,7 +11,7 @@
 #ifdef DEBUG
 #define DEFAULT_VOLUME 16
 #else
-#define DEFAULT_VOLUME 15
+#define DEFAULT_VOLUME 20
 #endif
 
 int BACKGROUND_TRACK = -1;
