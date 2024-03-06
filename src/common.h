@@ -9,8 +9,14 @@
 
 #define PIN_LIFT_SERVO 27
 
-#define PIN_TABLE_MOTOR 26
-#define CH_TABLE_MOTOR 6
+#define PIN_TABLE_MOTOR_A 26
+#define CH_TABLE_MOTOR_A 6
 
-#define PIN_WALK_MOTOR 25
-#define CH_WALK_MOTOR 7
+#define PIN_TABLE_MOTOR_B 25
+#define CH_TABLE_MOTOR_B 7
+
+#define PIN_WALK_MOTOR 15
+#define CH_WALK_MOTOR 8
+
+#define PIN_CANNON_LED 23
+#define CH_CANNON_LED 9

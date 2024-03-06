@@ -18,19 +18,33 @@ void setup()
 
     setupSound();
 
+    // Init Table Motor
+    ledcSetup(CH_TABLE_MOTOR_A, 1000, 8);
+    ledcAttachPin(PIN_TABLE_MOTOR_A, CH_TABLE_MOTOR_A);
+    ledcSetup(CH_TABLE_MOTOR_B, 1000, 8);
+    ledcAttachPin(PIN_TABLE_MOTOR_B, CH_TABLE_MOTOR_B);
+
+    ledcWrite(CH_TABLE_MOTOR_A, 255);
+    ledcWrite(CH_TABLE_MOTOR_B, 0);
+
+    // Init Walk Motor
+    ledcSetup(CH_WALK_MOTOR, 1000, 8);
+    ledcAttachPin(PIN_WALK_MOTOR, CH_WALK_MOTOR);
+    ledcWrite(CH_WALK_MOTOR, 0);
+
+    // Init Cannon LED
+    ledcSetup(CH_CANNON_LED, 1000, 8);
+    ledcAttachPin(PIN_CANNON_LED, CH_CANNON_LED);
+
+    // Init Servo
     servo1.attach(PIN_LIFT_SERVO);
     servo1.setEasingType(EASE_SINE_OUT);
     servo1.easeTo(90);
-    servo1.easeTo(90 + 70, 10);
 
-    ledcSetup(CH_TABLE_MOTOR, 1000, 8);
-    ledcAttachPin(PIN_TABLE_MOTOR, CH_TABLE_MOTOR);
+    // Lift Up
+    servo1.easeTo(90 + 65, 10);
 
-    ledcWrite(CH_TABLE_MOTOR, 255);
-
-    ledcSetup(CH_WALK_MOTOR, 1000, 8);
-    ledcAttachPin(PIN_WALK_MOTOR, CH_WALK_MOTOR);
-
+    // Start to walk
     ledcWrite(CH_WALK_MOTOR, 159);
 }
 
@@ -39,7 +53,7 @@ unsigned long lastChecked = 0;
 void loop()
 {
     const unsigned long now = millis();
-    if(lastChecked == 0)
+    if (lastChecked == 0)
     {
         lastChecked = now;
         return;
@@ -50,9 +64,12 @@ void loop()
         delay(2000);
 
         playCannon();
-        delay(1000);
+        delay(700);
+        ledcWrite(CH_CANNON_LED, 255);
+        // delay(500);
         servo1.write(90 + 80);
         delay(500);
+        ledcWrite(CH_CANNON_LED, 0);
         servo1.write(90 + 70);
         delay(1000 * 2);
 
