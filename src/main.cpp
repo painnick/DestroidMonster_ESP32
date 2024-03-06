@@ -8,6 +8,9 @@
 
 #define MAIN_TAG "Main"
 
+#define SERVO_DEFAULT_DEGREE 100
+#define SERVO_STAND_DEGREE 155
+
 ServoEasing servo1;
 
 void setup()
@@ -39,10 +42,10 @@ void setup()
     // Init Servo
     servo1.attach(PIN_LIFT_SERVO);
     servo1.setEasingType(EASE_SINE_OUT);
-    servo1.easeTo(90);
+    servo1.easeTo(SERVO_DEFAULT_DEGREE);
 
     // Lift Up
-    servo1.easeTo(90 + 65, 10);
+    servo1.easeTo(SERVO_STAND_DEGREE, 10);
 
     // Start to walk
     ledcWrite(CH_WALK_MOTOR, 159);
@@ -67,10 +70,10 @@ void loop()
         delay(700);
         ledcWrite(CH_CANNON_LED, 255);
         // delay(500);
-        servo1.write(90 + 80);
+        servo1.write(SERVO_STAND_DEGREE + 15);
         delay(500);
         ledcWrite(CH_CANNON_LED, 0);
-        servo1.write(90 + 70);
+        servo1.write(SERVO_STAND_DEGREE);
         delay(1000 * 2);
 
         ledcWrite(CH_WALK_MOTOR, 159);
